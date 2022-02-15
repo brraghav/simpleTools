@@ -57,7 +57,7 @@ layout = [[sg.Text('Select a log file for filtering')],
           [sg.Text('', size=(40, 3), key="-OUT1-", font=small_font)],
           [sg.Text('Keywords Suggestion:', size=(20, 1), font=small_font), sg.Button("Suggest", font=small_font)],
           [sg.Text('Separator', size=(20, 1), font=small_font), sg.Input(' ', s=5, key="-SEPARATOR-", do_not_clear=True, font=small_font), \
-           sg.Text('Defaut separator " " (space)', size=(25, 1), font=small_font)],
+           sg.Text('Default separator " " (space)', size=(25, 1), font=small_font)],
           [sg.Listbox(values=[''], size=(40, 8), key="-OUT2-", font=small_font, select_mode='extended'), sg.Button("Select Keywords", font=small_font)],
           [sg.Button("Submit", font=font), sg.Button("Open Output File Location", font=font), sg.Button("Reset", font=font), sg.Button("Close", font=font)]
           ]
