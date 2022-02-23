@@ -17,4 +17,13 @@ pip install PysimpleGUI \
 pip install pylint \
 Install GraphViz software from : https://graphviz.org/download/ \
 You need to install Graphviz and then modify your PATH so Windows can find it. \
-If the python module does not contain "__init__.py", add an empty "__init__.py" file in the module.
+If the python module does not contain <__ init __ .py>, add an empty <__ init __ .py> file in the module.
+
+### simplePy2Exe
+This tool generates exe from a python file. It uses pyinstaller internally to generate the executable.
+
+<img width="387" alt="py2exe" src="https://user-images.githubusercontent.com/27662483/155382524-2d5a131d-3916-481a-931e-91581da10f28.PNG">
+
+### Pre-requisites
+python3 -m pip install PysimpleGUI \
+python3 -m pip install pyinstaller \
