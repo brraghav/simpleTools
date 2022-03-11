@@ -26,4 +26,15 @@ This tool generates exe from a python file. It uses pyinstaller internally to ge
 
 ### Pre-requisites
 python3 -m pip install PysimpleGUI \
-python3 -m pip install pyinstaller \
+python3 -m pip install pyinstaller 
+
+### simpleFileUtility
+This tool helps in splitting a single big file into smaller chunks or merge multipe chunks of files into a single file. The testing is done only
+on csv files. Support for other file types will be added later.
+
+<img width="373" alt="SimpleFileUtility" src="https://user-images.githubusercontent.com/27662483/157937722-7f372cb4-dc34-4437-817a-4affa6fb2f2b.PNG">
+
+### Pre-requisites
+python3 -m pip install PysimpleGUI \
+python3 -m pip install pandas 
+
