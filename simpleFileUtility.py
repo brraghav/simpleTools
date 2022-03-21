@@ -121,7 +121,7 @@ def split_file(filename=None, output_folder=None, header_present=True, chunk_siz
             chunk_number += 1
 
             with open(outfile_name, "w") as outfile:
-                if header_present:
+                if header_present and chunk_number > 2:
                     outfile.writelines(header)
                 for _ in range(chunk_size):
                     next_line = file.readline()
