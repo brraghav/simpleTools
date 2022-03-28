@@ -55,7 +55,7 @@ layout = [[sg.Text('Select a log file for filtering')],
           [sg.Text('Keywords to Filter ', size=(15, 1)), sg.Input(key="-IN3-", do_not_clear=False, font=small_font), sg.Button("Add Keywords", font=small_font)],
           [sg.Text('Current Keywords List:', size=(20, 1), font=small_font)],
           [sg.Text('', size=(40, 3), key="-OUT1-", font=small_font)],
-          [sg.Text('Keywords Suggestion:', size=(20, 1), font=small_font), sg.Button("Suggest", font=small_font)],
+          [sg.Text('Keywords Suggestion:', size=(20, 1), font=small_font), sg.Button("Suggest", font=small_font), sg.Button("Reset Keywords", font=small_font)],
           [sg.Text('Separator', size=(20, 1), font=small_font), sg.Input(' ', s=5, key="-SEPARATOR-", do_not_clear=True, font=small_font), \
            sg.Text('Default separator " " (space)', size=(25, 1), font=small_font)],
           [sg.Listbox(values=[''], size=(40, 8), key="-OUT2-", font=small_font, select_mode='extended'), sg.Button("Select Keywords", font=small_font)],
@@ -73,6 +73,7 @@ def suggest_keywords(filename=filename, separator=' '):
     '''
     predicted_keywords = []
     keywords_dict = {}          #Dictionary to maintain tags and its frequency
+    special_characters_list = ['{', '}', '[', ']', ':', '(', ')', '#', '&', '%', '@', '$', '^', ',', '!', '\'']
                 
     if Path(filename).is_file():
         
@@ -98,13 +99,17 @@ def suggest_keywords(filename=filename, separator=' '):
                         #Avoid timestamps, key value pairs, rates (eg: kb/sec)
                         
                         if tag.count(':') > 1 or tag.find('.') != -1 or \
-                           tag.find('=') != -1 or tag.find('\\') != -1 or \
-                           tag.find('/') != -1 or tag[0] == "'" or \
-                           tag[-1] == ']' or tag[0].isnumeric() or \
-                           tag[-1].isnumeric() or tag.find(']') != -1 or \
-                           tag.find(')') != -1 or tag.find('{') != -1:
+                           tag.find('\\') != -1 or \
+                           tag.find('/') != -1 or \
+                           tag[0].isnumeric() or tag[-1].isnumeric():
+                           
                             continue
+                        
+                        tag = "".join(filter(lambda x: x not in special_characters_list, tag))
 
+                        if tag.find('=') != -1:
+                            tag = tag.split('=')[0]
+                        
                         if tag not in keywords_dict:
                             keywords_dict[tag] = 0
                         keywords_dict[tag] += 1
@@ -157,9 +162,10 @@ def filter_lines(filename='', output_folder='.', output_file='', keywords=keywor
                         lines = f.readlines()
                         for line in lines:
                             for m in keywords:
-                                for l in line.split(" "):
-                                    if l.find(m) != -1:
-                                        o.write(line)
+                                if line.find(m) != -1:
+                                    o.write(line)
+                                
+                                    
         except Exception as e:
             print("Error: ", e)
             sg.popup_error("Error: {}".format(e))
@@ -218,9 +224,9 @@ while True:
             sg.popup_error("No keywords added")
         else:
             if keywords:
-                keywords.extend(values["-IN3-"].split(' '))
+                keywords.extend(values["-IN3-"].split(','))
             else:
-                keywords = values["-IN3-"].split(' ')
+                keywords = values["-IN3-"].split(',')
                 
         #Unique sorted keywords entered by user
         keywords = list(sorted(set(keywords)))
@@ -252,6 +258,13 @@ while True:
         window["-IN2-"].update('')
         window["-IN4-"].update('')
         window["-FOLDER-"].update('')
+
+    elif event == "Reset Keywords":
+        keywords = []
+        predicted_keywords = []
+        output_file = "Output.txt"
+        window["-OUT1-"].update(', '.join(keywords))
+        window["-OUT2-"].update(', '.join(predicted_keywords))
         
     elif event == "Open Output File Location":
         if len(values["-FOLDER-"]) < 1:
