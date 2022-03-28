@@ -3,6 +3,14 @@ This Repository is intended to create and maintain simple Tools that anyone can 
 Invoking the tools should be as simple as Double Clicking the Python files. Any extra requirements will be mentioned explicitly in the python files itself or an Usage example will be provided. 
 
 ### simpleLogFilter.py
+Select Input Location, 
+Select Output Location,
+Enter Output Filename if required,
+Enter Keyword(s) (comma separated), 
+Check the suggestions option to get more keyword options. 
+Click on Submit and then click on Open Output File Location Button to go to the output location.
+
+
 ![image](https://user-images.githubusercontent.com/46163555/154674017-ec517875-6015-426c-8ef7-85006e21a45a.png)
 
 ### Python Modules Installation
