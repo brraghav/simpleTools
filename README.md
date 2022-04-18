@@ -46,3 +46,8 @@ on csv files. Support for other file types will be added later.
 python3 -m pip install PysimpleGUI \
 python3 -m pip install pandas 
 
+### simpleParamiko
+This tool helps in executing Linux commands remotely from Windows machine using Paramiko. The user can send multiple linux command at once and get the command output in the Output text box in the Windows machine itself.
+<img width="723" alt="simpleParamiko" src="https://user-images.githubusercontent.com/27662483/163843899-4a7e7c68-7e8a-44fe-b686-5289be2e0460.PNG">
+### Pre-requisites
+python3 -m pip install paramiko
