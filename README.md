@@ -24,7 +24,7 @@ pip install PySimpleGUI
 pip install PysimpleGUI \
 pip install pylint \
 Install GraphViz software from : https://graphviz.org/download/ \
-You need to install Graphviz and then modify your PATH so Windows can find it. \
+You need to install Graphviz with the option "Add Graphviz to the System PATH for all users". \
 If the python module does not contain <__ init __ .py>, add an empty <__ init __ .py> file in the module.
 
 ### simplePy2Exe
